@@ -1,5 +1,6 @@
 import Text from './components/atoms/text';
 import CategoryWithProductList from './components/categories/category-with-products-list';
+import CreateProductForm from './components/ui/forms/create-product.form';
 import MainLayout from './layouts/main-layout';
 import SidebarLayout from './layouts/sidebar-layout';
 import { useCategory } from './lib/hooks/categories/useCategories';
@@ -21,7 +22,9 @@ function App() {
 				</MainLayout>
 			</section>
 			<section className='w-3/12'>
-				<SidebarLayout kind='primary'>HOLA</SidebarLayout>
+				<SidebarLayout kind='primary'>
+					<CreateProductForm />
+				</SidebarLayout>
 			</section>
 		</main>
 	);

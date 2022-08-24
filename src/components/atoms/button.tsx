@@ -1,15 +1,26 @@
 import { clsx } from 'clsx';
+import {
+	AriaAttributes,
+	ButtonHTMLAttributes,
+	DetailedHTMLProps,
+	FC
+} from 'react';
 
-type Props = {
+interface Props
+	extends DetailedHTMLProps<
+			ButtonHTMLAttributes<HTMLButtonElement>,
+			HTMLButtonElement
+		>,
+		AriaAttributes {
 	kind?: string;
 	size?: string;
-	props?: HTMLButtonElement;
 	children?: React.ReactNode;
-};
+}
 
 const KINDS: { [key: string]: string } = {
-	primary: 'text-white bg-blue-700',
-	secondary: 'text-white bg-purple-700'
+	primary: 'text-white bg-sl-orange',
+	secondary: 'text-white bg-sl-blue',
+	tertiary: 'font-semibold'
 };
 
 const SIZES: { [key: string]: string } = {
@@ -18,11 +29,15 @@ const SIZES: { [key: string]: string } = {
 	large: 'h-14 text-lg px-8'
 };
 
-const Button = ({ kind = 'primary', size = 'regular', ...props }: Props) => {
+const Button: FC<Props> = ({
+	kind = 'primary',
+	size = 'regular',
+	...props
+}: Props) => {
 	return (
 		<button
 			className={clsx(
-				'flex items-center justify-center rounded-sm',
+				'flex items-center justify-center rounded-md',
 				SIZES[size],
 				KINDS[kind]
 			)}

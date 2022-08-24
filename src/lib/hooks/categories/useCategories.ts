@@ -38,7 +38,7 @@ export const useCategory = (filters?: any) => {
 };
 
 const loadCategory = async (
-	setData: (newData: ApiProduct[]) => void,
+	setData: (newData: ApiCategory[]) => void,
 	setError: () => void,
 	signal: AbortSignal
 ) => {

@@ -22,7 +22,14 @@ module.exports = {
 			DEFAULT: '0px 0px 8px',
 			md: '0px 0px 12px'
 		},
-		extend: {}
+		extend: {
+			colors: {
+				'sl-orange': '#F9A109',
+				'sl-red': '#80485B',
+				'sl-salmon': '#FFF0DE',
+				'sl-blue': '#56CCF2'
+			}
+		}
 	},
 	plugins: []
 };

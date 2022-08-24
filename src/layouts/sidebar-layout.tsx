@@ -7,7 +7,7 @@ type Props = {
 };
 
 const KIND: { [key: string]: string } = {
-	primary: 'bg-orange-200/70',
+	primary: 'bg-sl-salmon',
 	secondary: 'bg-white'
 };
 

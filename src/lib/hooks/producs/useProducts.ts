@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ApiProduct } from '../../../models/product.mode';
-import { findAllProducts } from '../../api/user-api';
+import { findAllProducts } from '../../api/product-api';
 
 interface ProductData {
 	data: ApiProduct[];
