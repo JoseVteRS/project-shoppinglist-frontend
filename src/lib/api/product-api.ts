@@ -1,3 +1,4 @@
+import { ApiProduct } from '../../models/product.mode';
 import { axiosInstance } from '../axios-instance';
 import { CreateProductDto } from '../interfaces/create-product.dto';
 
@@ -21,6 +22,29 @@ export const findAllProducts = async (signal: AbortSignal) => {
 
 		return {
 			products: undefined,
+			error: !isAborted,
+			aborted: isAborted
+		};
+	}
+};
+// http://localhost:5000/api/products
+export const findById = async (id: string, signal: AbortSignal) => {
+	try {
+		const res = await axiosInstance.get(`${ENDPOINT}/${id}`, { signal });
+		let product
+
+		if (res.statusText === 'OK') product = await res.data;
+
+		return {
+			product: product,
+			error: !(res.statusText === 'OK'),
+			borted: false
+		};
+	} catch (error: any) {
+		const isAborted = error.name === 'AbortError';
+
+		return {
+			product: undefined,
 			error: !isAborted,
 			aborted: isAborted
 		};

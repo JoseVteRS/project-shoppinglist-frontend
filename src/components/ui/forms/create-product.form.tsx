@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { createProduct } from '../../../lib/api/product-api';
 import { useCategory } from '../../../lib/hooks/categories/useCategories';
 import { CreateProductDto } from '../../../lib/interfaces/create-product.dto';
@@ -12,11 +12,20 @@ enum InputName {
 	categories = 'categories'
 }
 
+type Inputs = {
+	name: string;
+	note: string;
+	categories: string[];
+};
+
 const CreateProductForm = () => {
 	const { register, handleSubmit, formState, reset } = useForm();
 	const { errors } = formState;
-
 	const { categories, categoriesError, categoriesLoading } = useCategory();
+
+	const onSubmit: SubmitHandler<Inputs> = async data => console.log(data);
+	// await createProduct(data);
+
 	return (
 		<form className='w-full' onSubmit={handleSubmit(onSubmit)}>
 			<label className='mb-5 block' htmlFor={InputName.name}>
@@ -47,7 +56,9 @@ const CreateProductForm = () => {
 					{!categoriesLoading &&
 						categories &&
 						categories.map((category: ApiCategory) => (
-							<option value={category._id}>{category.name}</option>
+							<option key={category._id} value={category._id}>
+								{category.name}
+							</option>
 						))}
 				</select>
 			</label>
@@ -79,10 +90,6 @@ const CreateProductForm = () => {
 			</div>
 		</form>
 	);
-};
-
-const onSubmit = async (data: CreateProductDto) => {
-	await createProduct(data);
 };
 
 export default CreateProductForm;

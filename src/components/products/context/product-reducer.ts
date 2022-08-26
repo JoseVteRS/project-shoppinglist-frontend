@@ -1,7 +1,7 @@
 import { ApiProduct } from '../../../models/product.mode';
 
 export interface ProductState {
-	product: ApiProduct;
+	product: any;
 }
 
 type ProductActionType = { type: '[PROD] GET'; payload: ApiProduct };

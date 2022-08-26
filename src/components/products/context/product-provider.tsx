@@ -1,4 +1,5 @@
 import { ReactNode, useReducer } from 'react';
+import { findById } from '../../../lib/api/product-api';
 import { ApiProduct } from '../../../models/product.mode';
 import { ProductContext } from './product-context';
 import { productReducer } from './product-reducer';
@@ -14,7 +15,7 @@ const FORM_INITIAL_STATE = {
 export const ProductProvider = ({ children }: Props) => {
 	const [state, dispatch] = useReducer(productReducer, FORM_INITIAL_STATE);
 
-	const getProduct = (product: ApiProduct) => {
+	const getProduct = (product: any) => {
 		dispatch({ type: '[PROD] GET', payload: product });
 	};
 
